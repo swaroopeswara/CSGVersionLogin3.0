@@ -4,7 +4,7 @@
 	<persistence-unit name="csg_pu" transaction-type="JTA">
 		<jta-data-source>datasources/CSGDS</jta-data-source>
 
-		<mapping-file>META-INF/csg-orm.xml</mapping-file>
+		<!--  <mapping-file>META-INF/csg-orm.xml</mapping-file> -->
 
 		<properties>
 			<property name="jboss.entity.manager.jndi.name" value="java:global/csg/env/persistence/csg_pu"/>

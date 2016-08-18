@@ -25,8 +25,14 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.m2e.core.maven2Builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 	</buildSpec>
 	<natures>
+		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 		<nature>org.eclipse.jem.workbench.JavaEMFNature</nature>
 		<nature>org.eclipse.wst.common.modulecore.ModuleCoreNature</nature>
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
@@ -37,7 +43,7 @@
 		<link>
 			<name>csg-ejb</name>
 			<type>2</type>
-			<location>C:/Development/BACKUP/Sample/source/csg-ejb</location>
+			<location>/Users/swaroop/Documents/eclipse/Eclipse.app/Contents/MacOS/C::/Development/BACKUP/Sample/source/csg-ejb</location>
 		</link>
 	</linkedResources>
 </projectDescription>
