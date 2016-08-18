@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://java.sun.com/jsf/html">
+<head>
+    <title>CIS- Register</title>
+    <link href="App_Themes/Public.css" rel="stylesheet" />
+    <script src="Common/Scripts/Common.js"></script>
+    <script src="Common/Scripts/jquery-1.9.1.js"></script>
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+                
+        function reactToChangedRadio(par){
+            if(par == 1) {
+            		document.getElementById('RegisterForm:PLSnumber').value = '';
+            		document.getElementById('RegisterForm:PLSnumber').disabled  = false; //enable
+            	}
+            else {
+            		document.getElementById('RegisterForm:PLSnumber').value = '0';
+            		document.getElementById('RegisterForm:PLSnumber').disabled  = true; //disable
+            	}
+         }
+        
+		function Validate()
+		{
+			var i = 0;
+    		var name = document.getElementById('RegisterForm:Name');
+    		if (name.value.length == 0) {
+    			i = 1;
+    			document.getElementById('RegisterForm:Name').style.borderColor = "red";
+    		}
+    		else {
+    				document.getElementById('RegisterForm:Name').style.borderColor = "";
+    		}
+    		var Emailaddress = document.getElementById('RegisterForm:Emailaddress');
+    		if (Emailaddress.value.length == 0) 
+    		{
+    			i = 1;
+    			document.getElementById('RegisterForm:Emailaddress').style.borderColor = "red";
+    		}
+    		else {
+				document.getElementById('RegisterForm:Emailaddress').style.borderColor = "";
+			}
+    		var Username = document.getElementById('RegisterForm:Username');
+    		if (Username.value.length == 0) 
+    		{
+    			i = 1;
+    			document.getElementById('RegisterForm:Username').style.borderColor = "red";
+    		}
+    		else {
+				document.getElementById('RegisterForm:Username').style.borderColor = "";
+			}
+    		var PLSnumber = document.getElementById('RegisterForm:PLSnumber');
+    		if (PLSnumber.value.length == 0) 
+    		{
+    			i = 1;
+    			document.getElementById('RegisterForm:PLSnumber').style.borderColor = "red";
+    		}
+    		else {
+				document.getElementById('RegisterForm:PLSnumber').style.borderColor = "";
+			}
+    		var Password = document.getElementById('RegisterForm:Password');
+    		if (Password.value.length == 0) 
+    		{
+    			i = 1;
+    			document.getElementById('RegisterForm:Password').style.borderColor = "red";
+    		}
+    		else {
+				document.getElementById('RegisterForm:Password').style.borderColor = "";
+			}
+    		var ConfirmPassword = document.getElementById('RegisterForm:ConfirmPassword');
+    		if (ConfirmPassword.value.length == 0) 
+    		{
+    			i = 1;
+    			document.getElementById('RegisterForm:ConfirmPassword').style.borderColor = "red";
+    		}
+    		else {
+				document.getElementById('RegisterForm:ConfirmPassword').style.borderColor = "";
+			}
+    		if (i == 0)
+    			return true;
+    		else
+    			return false;
+        }
+        
+    </script>
+</head>
+<body>
+    <p:form id="RegisterForm" action="">
+        <header>
+            <div class="form-container">
+                <table style="width:100%;">
+                    <tr>
+                        <td>
+                            <a href="Home.xhtml" title="Home" style="text-decoration:none;border:0;"><img class="LeftLogo" src="Common/Images/DRDLR_GREEN.png" /></a>
+                            <font class="Title">Cadastral Information System</font>
+                        </td>
+                        <td>
+                            <a href="Home.xhtml" title="Home" style="text-decoration:none;border:0;"><img src="Common/Images/Logo.png" /></a>
+                        </td>
+                    </tr>
+                </table>
+
+
+            </div>
+
+        </header>
+        <div class="form-container registration-form" style="padding-top:15px; background-color:#F5F1E8">
+
+            <div style="clear: both;vertical-align:top;"></div>
+            <div style="min-height:400px;">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="vertical-align:top;">
+                            <div id="PanRegistration">
+                                <h2>Account Request Form</h2>
+                                <div id="RegistrationPanel">
+                                    <ul>
+                                        <li>
+                                            <div>
+                                                Role
+                                            </div>
+                                            <p:selectOneRadio id="roles" value="#{registerController.roleid}" layout="pageDirection" onchange="reactToChangedRadio(this.value);" >
+											   	<f:selectItems value="#{registerController.rolesData}" />
+											</p:selectOneRadio>
+                                        </li>
+                                        <li>
+                                            <div>
+                                                Name
+                                            </div>
+                                            <p:inputText value="#{registerController.user.name}" id="Name" />
+                                        </li>
+
+                                        <li>
+                                            <div>
+                                                Email <p:message style="color:red; padding-left: 30px;" for="Emailaddress" /> 
+                                            </div>
+                                            <p:inputText value="#{registerController.user.emailaddress}" validatorMessage="Invalid Email" id="Emailaddress">
+                                            	<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                                            </p:inputText>
+                                        </li>
+
+                                        <li>
+                                            <div>
+                                               User name
+                                            </div>
+                                            <p:inputText value="#{registerController.user.username}" id="Username"/>
+                                        </li>
+                                        <li>
+                                            <div>
+                                                PLS Number
+                                            </div>
+                                            <p:inputText value="#{registerController.user.plsnumber}" id="PLSnumber"/>
+                                        </li>
+                                  
+                                        <li>
+                                            <div>
+                                                Password
+                                            </div>
+                                            <p:inputSecret value="#{registerController.user.password}" id="Password">
+                                            	<f:validator validatorId="passwordValidator" />
+                                            	<f:attribute name="confirm" value="#{ConfirmPassword}" />
+                                            </p:inputSecret>
+                                        </li>
+                                        <li>
+                                            <div>
+                                               Confirm Password
+                                            </div>
+                                            <p:inputSecret value="#{registerController.user.password}" binding="#{ConfirmPassword}"  id="ConfirmPassword" />
+                                        </li>
+                                        
+                                        <li>
+                                            <div>
+                                               <p:message style="color:red;" for="Password" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div style="padding-left: 130px;"> 
+                                            	
+                                               <p:commandButton id="bSubmit" action="#{registerController.RegisterUser}" onclick="return Validate();"  image="Common/Images/Black/mail.png"/>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div style="clear: both; padding-top: 10px; border-top: 1px dotted gray; margin-top: 30px; margin-top:0px;">
+                <img id="ImageButton2" tooltip="Click here to go back" imagealign="Left" width="36" src="Common/Images/Black/back.png" onclick="Navigate2('Home.xhtml');" />
+
+                <div id="SearchTip" style="margin-top: 50px; font-weight: 300; font-style: italic; width: 50%; float: right; line-height: 1.5;">
+                    If you wish to search using other criterion like SG Number, Workflow Tasks, ERF or Farm Description, please <a href="Register.xhtml" onclick="Navigate2('Register.xhtml');">Register</a>
+                </div>
+
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+        <footer>
+
+            <div id="product-branding" style="float:right;cursor:hand;" onclick="window.open('http://www.dataworld.co.za');">
+                <div>© Data World 2016</div>
+            </div>
+        </footer>
+    </p:form>
+</body>
+</html>

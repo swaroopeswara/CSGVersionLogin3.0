@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:head>
+	<f:facet name="first">
+		<meta http-equiv="Content-Type" content='text/html; charset=UTF-8' />
+		<meta http-equiv="X-UA-Compatible" content="IE=10" />
+		<meta http-equiv="X-Frame-Options" content="deny" />
+		<title>CGS User Form Submission</title>
+	</f:facet>
+</h:head>
+<h:body>
+	<style type="text/css">
+.ui-layout, .ui-layout-doc, .ui-layout-unit, .ui-layout-wrap,
+	.ui-layout-bd, .ui-layout-hd {
+	border: none;
+}
+</style>
+	<f:view transient="true">
+		<o:form id="loginForm">
+			<p:layout fullPage="true">
+				<p:layoutUnit position="north" size="10%" />
+				<p:layoutUnit position="center" size="90%" minSize="140">
+					<p:panel id="udPanel" align="center" header="User Details">
+						<h:panelGrid columns="2" cellpadding="5">
+							<p:outputLabel value="Indicator:" />
+							<p:inputText value="#{userMaintenanceController.user.indicator}" />
+	
+							<p:outputLabel value="Name" />
+							<p:inputText value="#{userMaintenanceController.user.name}" />
+	
+							<p:outputLabel value="User Name" />
+							<p:inputText value="#{userMaintenanceController.user.username}" />
+	
+							<p:outputLabel value="Password" />
+							<p:password value="#{userMaintenanceController.user.password}" />
+	
+							<p:outputLabel value="Email Address" />
+							<p:inputText  value="#{userMaintenanceController.user.emailAddress}" />
+	
+							<p:outputLabel value="Pls Number" />
+							<p:inputText value="#{userMaintenanceController.user.plsNumber}" />
+	
+							<p:outputLabel value="Audit Trail ID" />
+							<p:inputText value="#{userMaintenanceController.user.auditTrailID}" />
+						</h:panelGrid>
+	
+						<p:commandButton id="loginButton" style="margin:10px 0px 10px 0px"
+							action="#{userMaintenanceController.saveUser}"
+							value="#{textBundle['save']}" ajax="false" />
+						<p:messages autoUpdate="true" globalOnly="true" />
+					</p:panel>
+				</p:layoutUnit>
+			</p:layout>
+		</o:form>
+	</f:view>
+</h:body>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
+	<description>Payhub ORM Mapping File</description>
+
+	<package>com.xpts.csg.model</package>
+		
+	<entity class="User" name="User">
+		<named-query name="User.findById">
+			<query>From User u where u.id = ?1</query>
+		</named-query>
+		<named-query name="User.findByUsername">
+			<query>From User u Where u.username = ?1</query>
+		</named-query>
+	</entity>
+	<entity class="UserRole" name="UserRole">
+		<named-query name="UserRole.findAll">
+			<query>FROM UserRole u</query>
+		</named-query>
+	</entity>
+	<entity class="UserProfile" name="UserProfile">
+		<named-query name="UserProfile.findAll">
+			<query>FROM UserProfile u</query>
+		</named-query>
+	</entity>
+</entity-mappings>
